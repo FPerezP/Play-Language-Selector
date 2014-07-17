@@ -1,12 +1,12 @@
-@()(implicit  l: Lang)
+@()(implicit  currentLang: Lang)
 
 @main() {
 
-    @helper.form(action = routes.Application.changeLocale(), 'class -> "change-locale") {
+    @helper.form(action = routes.Application.changeLocale()) {
         <label>@Messages("languages")
             <select name="locale">
                 @play.api.i18n.Lang.availables(play.api.Play.current).map { lang =>
-                <option value="@lang.code" @(if(l.code == lang.code) "selected")>@Messages("lang." + lang.code)</option>
+                <option value="@lang.code" @(if(currentLang.code == lang.code) "selected")>@Messages("lang." + lang.code)</option>
                 }
             </select>
         </label>
