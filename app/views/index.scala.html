@@ -1,7 +1,17 @@
-@(message: String)
+@()(implicit  l: Lang)
 
-@main("Welcome to Play") {
+@main() {
 
-    @play20.welcome(message)
+    @helper.form(action = routes.Application.changeLocale(), 'class -> "change-locale") {
+        <label>@Messages("languages")
+            <select name="locale">
+                @play.api.i18n.Lang.availables(play.api.Play.current).map { lang =>
+                <option value="@lang.code" @(if(l.code == lang.code) "selected")>@Messages("lang." + lang.code)</option>
+                }
+            </select>
+        </label>
+        <input type="submit" value=@Messages("change")></input>
 
+        <p>@Messages("texto_en_idioma")</p>
+    }
 }

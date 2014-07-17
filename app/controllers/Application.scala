@@ -2,11 +2,13 @@ package controllers
 
 import play.api._
 import play.api.mvc._
+import play.i18n.Lang
 
-object Application extends Controller {
+object Application extends Controller with CookieLang {
 
-  def index = Action {
-    Ok(views.html.index("Hola Fran! Your new application is ready."))
+  def index = Action { implicit request =>
+    Ok(views.html.index())
   }
+
 
 }
