@@ -7,7 +7,7 @@ import play.api.data.Forms._
 import play.api.Logger
 import play.api.Play.current
 
-trait CookieLang extends Controller {
+trait ChangeLanguage extends Controller {
 
   val localeForm = Form("locale" -> nonEmptyText)
 
@@ -15,11 +15,9 @@ trait CookieLang extends Controller {
     val referrer = request.headers.get(REFERER).getOrElse(HOME_URL)
     localeForm.bindFromRequest.fold(
       errors => {
-        Logger.logger.debug("The locale can not be change to : " + errors.get)
         BadRequest(referrer)
       },
       locale => {
-        Logger.logger.debug("Change user lang to : " + locale)
         Redirect(referrer).withLang(Lang(locale)) // TODO Check if the lang is handled by the application
       })
   }
