@@ -9,6 +9,7 @@ import play.api.Play.current
 
 trait ChangeLanguage extends Controller {
 
+  protected val HOME_URL = "/"
   val localeForm = Form("locale" -> nonEmptyText)
 
   val changeLocale = Action { implicit request =>
@@ -18,10 +19,8 @@ trait ChangeLanguage extends Controller {
         BadRequest(referrer)
       },
       locale => {
-        Redirect(referrer).withLang(Lang(locale)) // TODO Check if the lang is handled by the application
+        Redirect(referrer).withLang(Lang(locale))
       })
   }
-
-  protected val HOME_URL = "/"
 }
 
