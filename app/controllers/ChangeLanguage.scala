@@ -12,7 +12,7 @@ trait ChangeLanguage extends Controller {
   protected val HOME_URL = "/"
   val localeForm = Form("locale" -> nonEmptyText)
 
-  val changeLocale = Action { implicit request =>
+  val updateLocale = Action { implicit request =>
     val referrer = request.headers.get(REFERER).getOrElse(HOME_URL)
     localeForm.bindFromRequest.fold(
       errors => {

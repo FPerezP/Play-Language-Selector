@@ -2,7 +2,7 @@
 
 @main() {
 
-    @helper.form(action = routes.Application.changeLocale()) {
+    @helper.form(action = routes.Application.updateLocale()) {
         <label>@Messages("languages")
             <select name="locale">
                 @play.api.i18n.Lang.availables(play.api.Play.current).map { lang =>

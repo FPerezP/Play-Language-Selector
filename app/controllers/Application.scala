@@ -9,6 +9,4 @@ object Application extends Controller with ChangeLanguage {
   def index = Action { implicit request =>
     Ok(views.html.index())
   }
-
-
 }
